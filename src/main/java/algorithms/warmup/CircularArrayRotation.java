@@ -1,8 +1,6 @@
 package algorithms.warmup;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -12,8 +10,8 @@ import java.util.stream.IntStream;
  */
 public class CircularArrayRotation {
     public static void main(String[] args) throws FileNotFoundException {
-        final Scanner sc = new Scanner(System.in);
-//        final Scanner sc = new Scanner(Paths.get(System.getProperty("user.dir"), "/src/main/resources/input1.txt").toFile());
+//        final Scanner sc = new Scanner(System.in);
+        final Scanner sc = new Scanner(Paths.get(System.getProperty("user.dir"), "/src/main/resources/circular-array-rotation-2.txt").toFile());
 
         int[] input = new int[] {0,0,0};
         IntStream.range(0, input.length).forEach(i -> input[i] = sc.nextInt());
@@ -33,9 +31,13 @@ public class CircularArrayRotation {
             });
         } else {
             int[] newArray = new int[array.length];
-            IntStream.range(array.length - rotationTimes, array.length).forEach(i -> newArray[i - (array.length - rotationTimes)] = array[i]);
-            IntStream.range(0, array.length - rotationTimes).forEach(i -> newArray[i + rotationTimes] = array[i]);
-            IntStream.range(0, positions.length).forEach(idx -> System.out.println(newArray[positions[idx]]));
+            /*IntStream.range(array.length - rotationTimes, array.length).forEach(i -> newArray[i - (array.length - rotationTimes)] = array[i]);
+            IntStream.range(0, array.length - rotationTimes).forEach(i -> newArray[i + rotationTimes] = array[i]);*/
+            IntStream.range(0, positions.length)
+                    .forEach(idx ->
+//                            System.out.println(newArray[positions[idx]])
+                            System.out.println(array[positions[(array.length - rotationTimes + idx) % array.length]])
+                    );
         }
     }
 }
